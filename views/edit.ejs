@@ -1,0 +1,50 @@
+<% include ./partials/header %>
+    <style>
+        input {
+            border: none!important;
+        }
+
+        input:focus {
+            border-radius: 0px;
+            border-bottom: 1px solid #999!important;
+        }
+
+        .btn-center {
+            display: block;
+            margin: 0 auto;
+        }
+
+        body {
+            background: linear-gradient(60deg, #c79fcc, #c47ac7)!important;
+        }
+
+        #list {
+            background: linear-gradient(160deg, #e3c2e7, #CBAECF)!important;
+            border: none!important;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <h1>Todo App</h1>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="/todo/edit/<%=todo._id%>" method="POST">
+                    <div class="card my-3">
+                        <div class="card-block">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="title" name="title" value="<%=todo.title%>" placeholder="Title">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="body" name="body" value="<%=todo.body%>" placeholder="Body">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Save&nbsp;<i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% include ./partials/footer %>

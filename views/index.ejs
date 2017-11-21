@@ -1,0 +1,65 @@
+<% include ./partials/header %>
+    <style>
+        input {
+            border: none!important;
+        }
+
+        .btn-center {
+            display: block;
+            margin: 0 auto;
+        }
+
+        body {
+            background: linear-gradient(60deg, #c79fcc, #c47ac7)!important;
+        }
+
+        #list {
+            background: linear-gradient(160deg, #e3c2e7, #CBAECF)!important;
+            border: none!important;
+        }
+    </style>
+    <div class="container">
+        <h1 class="display-2 text-center">Todo App</h1>
+        <hr style="width: 30%;">
+        <div class="row">
+            <div class="col-md-6">
+                <form action="/todo/add" method="POST">
+                    <div class="card my-3">
+                        <div class="card-block">
+                            <input type="text" style="font-weight: bold;" class="form-control" id="title" name="title" placeholder="Title" autofocus>
+                            <input type="text" class="form-control" id="body" name="body" placeholder="Body">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-center col-6" type="submit">Add&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></button>
+                </form>
+            </div>
+            <div class="col-md-6 card my-3" id="list">
+                <h3 class="display-3 text-center">
+                    <strong>List</strong>
+                </h3>
+                <ul class="card-block">
+                    <%if(todos.length==0){%>
+                        <div class="text-center">no todos present!</div>                        
+                    <%}%>
+                    <%todos.forEach(function(todo){%>
+                        <li class="card my-2">
+                            <div class="card-block">
+                                <h3 class="card-title">
+                                    <%=todo.title%>
+                                </h3>
+                                <br>
+                                <p class="card-text">
+                                    <%=todo.body%>
+                                </p>
+                                <div class="btn-group">
+                                    <a href="/todo/edit/<%=todo._id%>" class="btn btn-success"><small>Edit</small>&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <a href="#" data-id="<%=todo._id%>" class="btn btn-danger delete-todo"><small>Delete</small>&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </li>
+                        <%})%>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <% include ./partials/footer %>
